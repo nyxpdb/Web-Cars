@@ -2,10 +2,14 @@ const express = require('express');
 const router = express.Router();
 const carController = require('../controllers/carController');
 
-router.post('/new', carController.createCar);
-router.get('/all', carController.getCars); 
-router.put('/edit/:id', carController.updateCar);
-router.delete('/delete/:id', carController.deleteCar);
+router.post('/', carController.createCar);               // POST /api/cars
+router.get('/', carController.getCars);                  // GET /api/cars
+router.put('/:id', carController.updateCar);             // PUT /api/cars/:id
+router.delete('/:id', carController.deleteCar);          // DELETE /api/cars/:id
+
+router.post('/batch', carController.createMultipleCars); // POST /api/cars/batch
+router.delete('/all', carController.deleteAllCars);      // DELETE /api/cars/all
+
 
 router.get('/welcome', (req, res) => {
   res.json({
