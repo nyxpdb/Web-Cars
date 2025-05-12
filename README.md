@@ -1,6 +1,7 @@
+````markdown
 # WebCars API - Backend
 
-Este projeto implementa uma API de gerenciamento de carros, construída com **Node.js**, **Express** e **MongoDB**. Ele permite que você realize operações CRUD (Create, Read, Update, Delete) em carros, com os campos `nome`, `cor`, `modelo`, `ano` e `preco`.
+Este projeto implementa uma API de gerenciamento de carros, construída com **Node.js**, **Express** e **MongoDB**. Ele permite que você realize operações CRUD (Create, Read, Update, Delete) em carros, com os campos `nome`, `cor`, `modelo`, `ano`, `preco` e `imagem`.
 
 ## Tecnologias Utilizadas
 
@@ -36,9 +37,10 @@ Cria um novo carro com os dados fornecidos.
   "cor": "Azul",
   "modelo": "2020",
   "ano": 2010,
-  "preco": 2500000
+  "preco": 2500000,
+  "imagem": "http://example.com/images/bmw-x6.jpg"
 }
-```
+````
 
 **Resposta (JSON):**
 
@@ -52,6 +54,7 @@ Cria um novo carro com os dados fornecidos.
     "modelo": "2020",
     "ano": 2010,
     "preco": 2500000,
+    "imagem": "http://example.com/images/bmw-x6.jpg",
     "_id": "61c7d015f1b5f80d5f57f9f0"
   }
 }
@@ -74,6 +77,7 @@ Lista todos os carros cadastrados.
       "modelo": "2020",
       "ano": 2010,
       "preco": 2500000,
+      "imagem": "http://example.com/images/bmw-x6.jpg",
       "_id": "61c7d015f1b5f80d5f57f9f0"
     },
     {
@@ -82,6 +86,7 @@ Lista todos os carros cadastrados.
       "modelo": "2018",
       "ano": 2018,
       "preco": 90000,
+      "imagem": "http://example.com/images/civic.jpg",
       "_id": "61c7d0a2f1b5f80d5f57f9f1"
     }
   ]
@@ -104,6 +109,7 @@ Consulta um carro específico pelo ID.
     "modelo": "2020",
     "ano": 2010,
     "preco": 2500000,
+    "imagem": "http://example.com/images/bmw-x6.jpg",
     "_id": "61c7d015f1b5f80d5f57f9f0"
   }
 }
@@ -121,7 +127,8 @@ Atualiza as informações de um carro específico.
   "cor": "Preto",
   "modelo": "2021",
   "ano": 2021,
-  "preco": 3000000
+  "preco": 3000000,
+  "imagem": "http://example.com/images/bmw-x6-2021.jpg"
 }
 ```
 
@@ -137,6 +144,7 @@ Atualiza as informações de um carro específico.
     "modelo": "2021",
     "ano": 2021,
     "preco": 3000000,
+    "imagem": "http://example.com/images/bmw-x6-2021.jpg",
     "_id": "61c7d015f1b5f80d5f57f9f0"
   }
 }
@@ -179,7 +187,7 @@ npm install
 Crie um arquivo `.env` na raiz do seu projeto e adicione as variáveis necessárias. Exemplo:
 
 ```
-MONGO_URI=mongodb+srv://$MONGO_USERNAME:$MONGO_PASSWORD@$MONGO_CLUSTER/$MONGO_DB?retryWrites=true&w=majority&appName=Cluster0 quero isso aqui SEM 
+MONGO_URI=mongodb+srv://$MONGO_USERNAME:$MONGO_PASSWORD@$MONGO_CLUSTER/$MONGO_DB?retryWrites=true&w=majority&appName=Cluster0
 ```
 
 ### 4. Rodando o Servidor
@@ -202,12 +210,7 @@ curl -X POST http://localhost:3000/api/cars/new -H "Content-Type: application/js
   "cor": "Azul",
   "modelo": "2020",
   "ano": 2010,
-  "preco": 2500000
+  "preco": 2500000,
+  "imagem": "http://example.com/images/bmw-x6.jpg"
 }'
 ```
-
-## Considerações Finais
-
-Esse projeto é uma API simples para cadastro e manipulação de informações de carros. Ela pode ser expandida e aprimorada de acordo com as necessidades do seu projeto, como a adição de autenticação de usuários, validações de entrada, entre outras melhorias.
-
----
