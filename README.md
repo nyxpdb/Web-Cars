@@ -1,4 +1,3 @@
-````markdown
 # WebCars API - Backend
 
 Este projeto implementa uma API de gerenciamento de carros, construída com **Node.js**, **Express** e **MongoDB**. Ele permite que você realize operações CRUD (Create, Read, Update, Delete) em carros, com os campos `nome`, `cor`, `modelo`, `ano`, `preco` e `imagem`.
