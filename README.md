@@ -1,7 +1,3 @@
-Aqui está um exemplo de README para o seu projeto de backend de carros, explicando a estrutura, como configurar e usar a API, e como interagir com ela:
-
----
-
 # WebCars API - Backend
 
 Este projeto implementa uma API de gerenciamento de carros, construída com **Node.js**, **Express** e **MongoDB**. Ele permite que você realize operações CRUD (Create, Read, Update, Delete) em carros, com os campos `nome`, `cor`, `modelo`, `ano` e `preco`.
