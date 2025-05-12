@@ -5,7 +5,8 @@ const CarSchema = new mongoose.Schema({
   cor:    { type: String, required: true },
   modelo: { type: String, required: true },
   ano:    { type: Number, required: true },
-  preco:  { type: Number, required: true }
+  preco:  { type: Number, required: true },
+  imagem: { type: String, required: true },
 });
 
 module.exports = mongoose.model('Car', CarSchema);
