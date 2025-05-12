@@ -18,4 +18,18 @@ router.get('/welcome', (req, res) => {
   });
 });
 
+router.get('/ping', (req, res) => {
+  const requestDetails = {
+    success: true,
+    message: 'API is running',
+    ip: req.ip,
+    method: req.method,  
+    headers: req.headers, 
+    time: new Date().toISOString(),  
+  };
+
+  res.status(200).json(requestDetails);
+});
+
+
 module.exports = router;
