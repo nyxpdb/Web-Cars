@@ -2,7 +2,7 @@ Aqui está um exemplo de README para o seu projeto de backend de carros, explica
 
 ---
 
-# Car API - Backend
+# WebCars API - Backend
 
 Este projeto implementa uma API de gerenciamento de carros, construída com **Node.js**, **Express** e **MongoDB**. Ele permite que você realize operações CRUD (Create, Read, Update, Delete) em carros, com os campos `nome`, `cor`, `modelo`, `ano` e `preco`.
 
@@ -166,8 +166,8 @@ Deleta um carro específico pelo ID.
 Clone o repositório para sua máquina local:
 
 ```bash
-git clone https://github.com/seuusuario/nome-do-repositorio.git
-cd nome-do-repositorio
+git clone https://github.com/nyxpdb/Web-Cars
+cd Web-Cars
 ```
 
 ### 2. Instalando Dependências
