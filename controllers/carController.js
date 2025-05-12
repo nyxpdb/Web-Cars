@@ -75,6 +75,19 @@ exports.getCars = async (req, res) => {
   }
 };
 
+exports.getCarById = async (req, res) => {
+  try {
+    const car = await findCarById(req.params.id);
+    return res.status(200).json({
+      success: true,
+      message: 'Carro encontrado com sucesso!',
+      data: car
+    });
+  } catch (err) {
+    return handleError(res, err, 404, "Erro ao buscar carro por ID");
+  }
+};
+
 exports.updateCar = async (req, res) => {
   try {
     const car = await findCarById(req.params.id);
@@ -105,23 +118,19 @@ exports.deleteCar = async (req, res) => {
   }
 };
 
-
-//fix later
 exports.deleteAllCars = async (req, res) => {
-    try {
-        console.warn("⚠️  Operação perigosa: limpando todos os carros do banco de dados.");
-        
-        const result = await Car.deleteMany({});
-        const count = result.deletedCount || 0;
+  try {
+    console.warn("Operação perigosa: limpando todos os carros do banco de dados.");
 
-        return res.status(200).json({
-            success: true,
-            message: `${count} carro(s) deletado(s) com sucesso!`
-        });
-    } catch (err) {
-        console.error("Erro ao deletar todos os carros:", err); // Log do erro
-        return handleError(res, err, 500, "Erro ao deletar todos os carros");
-    }
+    const result = await Car.deleteMany({});
+    const count = result.deletedCount || 0;
+
+    return res.status(200).json({
+      success: true,
+      message: `${count} carro(s) deletado(s) com sucesso!`
+    });
+  } catch (err) {
+    console.error("Erro ao deletar todos os carros:", err);
+    return handleError(res, err, 500, "Erro ao deletar todos os carros");
+  }
 };
-
-  
