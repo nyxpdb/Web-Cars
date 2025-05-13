@@ -1,34 +1,42 @@
 # WebCars API - Backend
 
-Este projeto implementa uma API de gerenciamento de carros, construída com **Node.js**, **Express** e **MongoDB**. Ele permite que você realize operações CRUD (Create, Read, Update, Delete) em carros, com os campos `nome`, `cor`, `modelo`, `ano`, `preco` e `imagem`.
+A **WebCars API** é uma aplicação backend construída com **Node.js**, **Express** e **MongoDB**, que fornece uma interface para gerenciamento de carros. Com ela, é possível realizar operações CRUD completas (Create, Read, Update, Delete).
 
-## Tecnologias Utilizadas
+## 🧰 Tecnologias Utilizadas
 
-* **Node.js**: Plataforma para construir o backend em JavaScript.
-* **Express**: Framework minimalista e flexível para Node.js, usado para criar o servidor e as rotas da API.
-* **MongoDB**: Banco de dados NoSQL usado para armazenar informações dos carros.
-* **Mongoose**: ODM (Object Data Modeling) para trabalhar com MongoDB de forma mais simples.
-* **dotenv**: Para carregar variáveis de ambiente de um arquivo `.env`.
-* **Cors**: Para habilitar requisições de diferentes origens (CORS).
-* **Body-parser**: Para parsear o corpo das requisições HTTP.
+* **Node.js** – Plataforma JavaScript para o backend
+* **Express** – Framework web leve e flexível
+* **MongoDB** – Banco de dados NoSQL
+* **Mongoose** – ODM para modelar os dados do MongoDB
+* **dotenv** – Para gerenciar variáveis de ambiente
+* **CORS** – Para permitir requisições cross-origin
+* **body-parser** – Para interpretar o corpo das requisições HTTP
+* **Swagger** – Para documentação interativa da API
 
-## Funcionalidades
+---
 
-A API permite as seguintes operações:
+## 🚗 Funcionalidades
 
-* **POST** `/api/cars/new`: Criação de um novo carro.
-* **GET** `/api/cars`: Listar todos os carros cadastrados.
-* **GET** `/api/cars/{id}`: Consultar detalhes de um carro específico pelo ID.
-* **PUT** `/api/cars/edit/{id}`: Atualizar as informações de um carro específico pelo ID.
-* **DELETE** `/api/cars/delete/{id}`: Excluir um carro pelo ID.
+A API permite:
 
-## Endpoints
+* Criar um ou vários carros
+* Listar todos os carros
+* Buscar um carro por ID
+* Atualizar dados de um carro
+* Deletar um carro por ID
+* Deletar todos os carros
+* Ver mensagem de boas-vindas
+* Documentação interativa via Swagger
 
-### 1. **POST** `/api/cars/new`
+---
 
-Cria um novo carro com os dados fornecidos.
+## 📄 Endpoints
 
-**Corpo da requisição (JSON):**
+### **\[POST] /api/cars**
+
+Cria um novo carro.
+
+**Exemplo de corpo (JSON):**
 
 ```json
 {
@@ -39,86 +47,56 @@ Cria um novo carro com os dados fornecidos.
   "preco": 2500000,
   "imagem": "http://example.com/images/bmw-x6.jpg"
 }
-````
+```
 
-**Resposta (JSON):**
+---
+
+### **\[POST] /api/cars/multiple**
+
+Cria múltiplos carros de uma vez.
+
+**Corpo (JSON):**
 
 ```json
-{
-  "success": true,
-  "message": "Carro criado com sucesso!",
-  "data": {
-    "nome": "BMW X6",
-    "cor": "Azul",
-    "modelo": "2020",
-    "ano": 2010,
-    "preco": 2500000,
-    "imagem": "http://example.com/images/bmw-x6.jpg",
-    "_id": "61c7d015f1b5f80d5f57f9f0"
+[
+  {
+    "nome": "Civic",
+    "cor": "Preto",
+    "modelo": "2018",
+    "ano": 2018,
+    "preco": 90000,
+    "imagem": "http://example.com/images/civic.jpg"
+  },
+  {
+    "nome": "Corolla",
+    "cor": "Branco",
+    "modelo": "2019",
+    "ano": 2019,
+    "preco": 95000,
+    "imagem": "http://example.com/images/corolla.jpg"
   }
-}
+]
 ```
 
-### 2. **GET** `/api/cars`
+---
 
-Lista todos os carros cadastrados.
+### **\[GET] /api/cars**
 
-**Resposta (JSON):**
+Retorna a lista de todos os carros cadastrados.
 
-```json
-{
-  "success": true,
-  "message": "Carros encontrados com sucesso!",
-  "data": [
-    {
-      "nome": "BMW X6",
-      "cor": "Azul",
-      "modelo": "2020",
-      "ano": 2010,
-      "preco": 2500000,
-      "imagem": "http://example.com/images/bmw-x6.jpg",
-      "_id": "61c7d015f1b5f80d5f57f9f0"
-    },
-    {
-      "nome": "Civic",
-      "cor": "Preto",
-      "modelo": "2018",
-      "ano": 2018,
-      "preco": 90000,
-      "imagem": "http://example.com/images/civic.jpg",
-      "_id": "61c7d0a2f1b5f80d5f57f9f1"
-    }
-  ]
-}
-```
+---
 
-### 3. **GET** `/api/cars/{id}`
+### **\[GET] /api/cars/\:id**
 
-Consulta um carro específico pelo ID.
+Retorna um carro específico com base no ID.
 
-**Resposta (JSON):**
+---
 
-```json
-{
-  "success": true,
-  "message": "Carro encontrado com sucesso!",
-  "data": {
-    "nome": "BMW X6",
-    "cor": "Azul",
-    "modelo": "2020",
-    "ano": 2010,
-    "preco": 2500000,
-    "imagem": "http://example.com/images/bmw-x6.jpg",
-    "_id": "61c7d015f1b5f80d5f57f9f0"
-  }
-}
-```
+### **\[PUT] /api/cars/\:id**
 
-### 4. **PUT** `/api/cars/edit/{id}`
+Atualiza os dados de um carro.
 
-Atualiza as informações de um carro específico.
-
-**Corpo da requisição (JSON):**
+**Corpo esperado (JSON):**
 
 ```json
 {
@@ -131,80 +109,88 @@ Atualiza as informações de um carro específico.
 }
 ```
 
-**Resposta (JSON):**
+---
+
+### **\[DELETE] /api/cars/\:id**
+
+Remove um carro pelo ID.
+
+---
+
+### **\[DELETE] /api/cars/delete-all**
+
+Remove **todos** os carros do banco de dados.
+
+---
+
+### **\[GET] /api/cars/welcome**
+
+Retorna uma mensagem simples de boas-vindas:
 
 ```json
 {
-  "success": true,
-  "message": "Carro atualizado com sucesso!",
-  "data": {
-    "nome": "BMW X6",
-    "cor": "Preto",
-    "modelo": "2021",
-    "ano": 2021,
-    "preco": 3000000,
-    "imagem": "http://example.com/images/bmw-x6-2021.jpg",
-    "_id": "61c7d015f1b5f80d5f57f9f0"
-  }
+  "message": "Bem-vindo à API de Carros!"
 }
 ```
 
-### 5. **DELETE** `/api/cars/delete/{id}`
+---
 
-Deleta um carro específico pelo ID.
+## 📘 Documentação Swagger
 
-**Resposta (JSON):**
+A documentação interativa da API está disponível em:
 
-```json
-{
-  "success": true,
-  "message": "Carro deletado com sucesso!"
-}
+```
+http://localhost:3000/api-docs
 ```
 
-## Como Rodar o Projeto
+---
 
-### 1. Clonando o Repositório
+## ▶️ Como Rodar o Projeto
 
-Clone o repositório para sua máquina local:
+### 1. Clone o repositório
 
 ```bash
 git clone https://github.com/nyxpdb/Web-Cars
 cd Web-Cars
 ```
 
-### 2. Instalando Dependências
-
-No diretório do projeto, instale as dependências necessárias:
+### 2. Instale as dependências
 
 ```bash
 npm install
 ```
 
-### 3. Configurando as Variáveis de Ambiente
+### 3. Configure as variáveis de ambiente
 
-Crie um arquivo `.env` na raiz do seu projeto e adicione as variáveis necessárias. Exemplo:
+Crie um arquivo `.env` na raiz com o seguinte conteúdo:
 
 ```
-MONGO_URI=mongodb+srv://$MONGO_USERNAME:$MONGO_PASSWORD@$MONGO_CLUSTER/$MONGO_DB?retryWrites=true&w=majority&appName=Cluster0
+MONGO_URI=mongodb+srv://<usuario>:<senha>@<cluster>.mongodb.net/<dbname>?retryWrites=true&w=majority
 ```
 
-### 4. Rodando o Servidor
+> Substitua `<usuario>`, `<senha>`, `<cluster>` e `<dbname>` pelos valores reais do seu banco MongoDB.
 
-Para rodar a aplicação localmente, use o comando:
+---
+
+### 4. Inicie o servidor
 
 ```bash
 npm start
 ```
 
-O servidor será iniciado e ficará disponível em `http://localhost:3000`.
+A API estará disponível em:
+📍 `http://localhost:3000`
 
-### 5. Testando a API
+---
 
-Você pode usar o **Postman** ou **CURL** para interagir com a API. Aqui está um exemplo de como você pode usar o cURL para testar o **POST** de um novo carro:
+### 5. Teste com CURL ou Postman
+
+Exemplo de requisição **POST** via `curl`:
 
 ```bash
-curl -X POST http://localhost:3000/api/cars/new -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:3000/api/cars \
+-H "Content-Type: application/json" \
+-d '{
   "nome": "BMW X6",
   "cor": "Azul",
   "modelo": "2020",
