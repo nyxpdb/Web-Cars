@@ -10,7 +10,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3000',
+        url: 'https://web-cars-7wxh.onrender.com/',
       },
     ],
   },
