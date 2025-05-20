@@ -199,3 +199,76 @@ curl -X POST http://localhost:3000/api/cars \
   "imagem": "http://example.com/images/bmw-x6.jpg"
 }'
 ```
+## 📦 Sugestão de consumo da API com `carService.js`
+
+Para facilitar o consumo da WebCars API em seus projetos frontend (React, React Native, Vue, etc.), você pode criar um módulo JavaScript dedicado a fazer as requisições HTTP, isolando a lógica da API.
+
+### Exemplo de `carService.js`
+```bash
+const API_BASE = 'https://web-cars-7wxh.onrender.com/api/cars';
+
+export async function getCars() {
+  try {
+    const res = await fetch(API_BASE);
+    const data = await res.json();
+    if (data.success) return data.data;
+    throw new Error(data.message || 'Erro ao buscar carros');
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getCarById(id) {
+  try {
+    const res = await fetch(`${API_BASE}/${id}`);
+    const data = await res.json();
+    if (data.success) return data.data;
+    throw new Error(data.message || 'Carro não encontrado');
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function createCar(carData) {
+  try {
+    const res = await fetch(API_BASE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(carData),
+    });
+    const data = await res.json();
+    if (data.success) return data.data;
+    throw new Error(data.message || 'Erro ao criar carro');
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function updateCar(id, carData) {
+  try {
+    const res = await fetch(`${API_BASE}/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(carData),
+    });
+    const data = await res.json();
+    if (data.success) return data.data;
+    throw new Error(data.message || 'Erro ao atualizar carro');
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function deleteCar(id) {
+  try {
+    const res = await fetch(`${API_BASE}/${id}`, {
+      method: 'DELETE',
+    });
+    const data = await res.json();
+    if (data.success) return true;
+    throw new Error(data.message || 'Erro ao deletar carro');
+  } catch (error) {
+    throw error;
+  }
+}
+```
